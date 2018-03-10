@@ -22,9 +22,11 @@ class App extends React.Component {
   handleCellClick = (rIndex, cIndex) => {
     const board = this.state.board.map(row => [...row]);
     board[rIndex][cIndex] = this.state.currentPlayer;
+
     if (gameStatus(board) === this.state.currentPlayer) {
       this.setState({ winner: this.state.currentPlayer });
     }
+
     const nextPlayer = this.state.currentPlayer === 'X' ? 'O' : 'X';
     this.setState({ board, currentPlayer: nextPlayer });
   };

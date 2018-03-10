@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Game = ({ p1Name, p2Name, board, onCellClicked }) => {
+  const onCellClick = (target, rIndex, cIndex) => {
+    if (target.innerText) {
+      return;
+    }
+    onCellClicked(rIndex, cIndex);
+  };
+
   return (
     <div>
       <span data-hook="p1-name">{p1Name}</span>
@@ -15,7 +22,7 @@ const Game = ({ p1Name, p2Name, board, onCellClicked }) => {
                   key={cIndex}
                   role="gridcell"
                   data-hook="cell"
-                  onClick={() => onCellClicked(rIndex, cIndex)}
+                  onClick={({ target }) => onCellClick(target, rIndex, cIndex)}
                 >
                   {cell}
                 </td>
